@@ -32,7 +32,7 @@ let countdownTimer;
 let incorrectAttempts = 0;
 let roundStats;
 
-const ROUND_DURATION_MS = 20 * 1000;
+const ROUND_DURATION_MS = 300 * 1000;
 
 function shuffle(items) {
   for (let index = items.length - 1; index > 0; index -= 1) {
