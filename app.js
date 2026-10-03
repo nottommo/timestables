@@ -10,6 +10,7 @@ let answer = "";
 let question;
 let questions = [];
 let waitingToAdvance = false;
+let advanceTimer;
 
 function shuffle(items) {
   for (let index = items.length - 1; index > 0; index -= 1) {
@@ -61,8 +62,15 @@ function toggleTable(table, button) {
 
   button.setAttribute("aria-pressed", String(selectedTables.has(table)));
   questions = createQuestionPool().filter((item) => !sameQuestion(item, question));
-  feedback.textContent = "";
-  feedback.className = "feedback";
+  if (advanceTimer !== undefined) {
+    window.clearTimeout(advanceTimer);
+    advanceTimer = undefined;
+  }
+  waitingToAdvance = false;
+  keypad.querySelectorAll("button").forEach((key) => {
+    key.disabled = false;
+  });
+  showQuestion(questions.pop());
 }
 
 function showQuestion(nextQuestion) {
@@ -129,8 +137,9 @@ function checkAnswer() {
     keypad.querySelectorAll("button").forEach((button) => {
       button.disabled = true;
     });
-    window.setTimeout(() => {
+    advanceTimer = window.setTimeout(() => {
       waitingToAdvance = false;
+      advanceTimer = undefined;
       nextQuestion();
       keypad.querySelectorAll("button").forEach((button) => {
         button.disabled = false;

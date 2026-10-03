@@ -1,4 +1,4 @@
-const CACHE_NAME = "times-tables-v1";
+const CACHE_NAME = "times-tables-v2";
 const APP_SHELL = ["./", "./styles.css", "./app.js"];
 
 self.addEventListener("install", (event) => {
