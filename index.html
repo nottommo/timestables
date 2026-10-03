@@ -14,12 +14,43 @@
         <p class="eyebrow">A little practice goes a long way</p>
         <h1>Times Tables</h1>
         <p class="subtitle">Choose a table and solve the times table</p>
+        <div class="mode-toggle" id="mode-toggle" role="group" aria-label="Practice mode">
+          <button class="mode-option" type="button" data-mode="freestyle" aria-pressed="true">Freestyle</button>
+          <button class="mode-option" type="button" data-mode="timer" aria-pressed="false">Timer</button>
+        </div>
       </header>
 
       <section class="table-picker" aria-labelledby="table-picker-title">
         <h2 id="table-picker-title">Practice tables</h2>
         <div class="table-options" id="table-options" role="group" aria-labelledby="table-picker-title"></div>
-        <p class="selection-hint">Pick one or more tables to practise.</p>
+        <p class="selection-hint" id="selection-hint" role="status" aria-live="polite">Pick one or more tables to practise.</p>
+        <div class="timer-panel" id="timer-panel" hidden>
+          <p class="timer-clock" id="timer-clock" aria-live="off">3:00</p>
+          <p class="timer-message" id="timer-message">Start when you’re ready. You’ll have 3 minutes.</p>
+          <button class="timer-start" id="start-timer" type="button">Start 3-minute timer</button>
+        </div>
+      </section>
+
+      <section class="results-card" id="results-card" aria-labelledby="results-title" hidden>
+        <h2 id="results-title">Time’s up!</h2>
+        <p class="results-intro">Here’s how you did:</p>
+        <dl class="results-list">
+          <div>
+            <dt>Correct first time</dt>
+            <dd id="first-try-result">0</dd>
+          </div>
+          <div>
+            <dt>Correct after retries</dt>
+            <dd id="retry-result">0</dd>
+          </div>
+          <div>
+            <dt>Average seconds per sum</dt>
+            <dd id="average-result">Not available</dd>
+          </div>
+        </dl>
+        <div class="results-actions">
+          <button class="timer-start" id="try-again" type="button">Try again</button>
+        </div>
       </section>
 
       <section class="practice-card" aria-label="Multiplication practice">

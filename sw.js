@@ -1,4 +1,4 @@
-const CACHE_NAME = "times-tables-v2";
+const CACHE_NAME = "times-tables-v4";
 const APP_SHELL = ["./", "./styles.css", "./app.js"];
 
 self.addEventListener("install", (event) => {
@@ -28,12 +28,27 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request).catch(() => caches.match("./"))
+      fetch(request, { cache: "no-cache" }).catch(() => caches.match("./"))
     );
     return;
   }
 
   event.respondWith(
-    caches.match(request).then((cachedResponse) => cachedResponse || fetch(request))
+    fetch(request, { cache: "no-cache" })
+      .then((response) => {
+        if (response.ok) {
+          event.waitUntil(
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()))
+          );
+        }
+        return response;
+      })
+      .catch(async (error) => {
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        throw error;
+      })
   );
 });

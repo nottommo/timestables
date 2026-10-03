@@ -35,6 +35,7 @@ button {
 .app {
   width: min(100%, 690px);
   margin: 0 auto;
+  text-align: center;
 }
 
 .page-header {
@@ -64,8 +65,41 @@ h1 {
   font-size: 1rem;
 }
 
+.mode-toggle {
+  display: inline-flex;
+  width: min(100%, 340px);
+  gap: 4px;
+  margin-top: 20px;
+  padding: 5px;
+  border: 1px solid rgb(210 222 241 / 90%);
+  border-radius: 18px;
+  background: #e8eef9;
+  box-shadow: inset 0 1px 3px rgb(42 71 119 / 8%);
+}
+
+.mode-option {
+  flex: 1;
+  min-height: 43px;
+  padding: 8px 17px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: transparent;
+  color: #42536c;
+  cursor: pointer;
+  font-weight: 800;
+  transition: background-color 140ms ease, box-shadow 140ms ease, color 140ms ease;
+}
+
+.mode-toggle .mode-option[aria-pressed="true"] {
+  border-color: #fff;
+  background: #fff;
+  color: var(--blue-dark);
+  box-shadow: 0 2px 7px rgb(42 71 119 / 13%);
+}
+
 .table-picker,
-.practice-card {
+.practice-card,
+.results-card {
   border: 1px solid rgb(210 222 241 / 85%);
   border-radius: 24px;
   background: rgb(255 255 255 / 94%);
@@ -108,6 +142,10 @@ h1 {
   box-shadow: 0 4px 10px rgb(49 95 206 / 20%);
 }
 
+.table-toggle:disabled {
+  opacity: 0.68;
+}
+
 .table-toggle:active,
 .key:active {
   transform: scale(0.96);
@@ -118,6 +156,114 @@ h1 {
   color: var(--ink-soft);
   font-size: 0.84rem;
   text-align: center;
+}
+
+.timer-panel {
+  width: min(100%, 430px);
+  margin: 19px auto 0;
+  padding: 19px 20px 20px;
+  border: 1px solid #dce6f5;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #f7faff, #edf3ff);
+  box-shadow: inset 0 1px 0 #fff, 0 7px 18px rgb(42 71 119 / 6%);
+  text-align: center;
+}
+
+.timer-clock {
+  margin: 0;
+  color: #244baa;
+  font-size: clamp(3.4rem, 12vw, 4.6rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.timer-message {
+  margin: 10px 0 17px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.timer-start {
+  min-height: 46px;
+  padding: 10px 20px;
+  border: 1px solid var(--blue);
+  border-radius: 13px;
+  background: var(--blue);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.timer-start:hover {
+  background: var(--blue-dark);
+}
+
+.results-card {
+  width: min(100%, 560px);
+  margin-top: 19px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 28px;
+  border-color: #d4e1f4;
+  background:
+    radial-gradient(ellipse at 50% 0, rgb(213 229 255 / 62%), transparent 70%),
+    rgb(255 255 255 / 96%);
+  text-align: center;
+}
+
+.results-card h2 {
+  margin: 0;
+  color: #1d3153;
+  font-size: 1.8rem;
+}
+
+.results-intro {
+  margin: 7px 0 18px;
+  color: var(--ink-soft);
+}
+
+.results-list {
+  display: grid;
+  gap: 10px;
+  width: min(100%, 420px);
+  margin: 0 auto;
+}
+
+.results-list > div {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #e4eaf4;
+  border-radius: 15px;
+  background: #f4f7fc;
+  text-align: center;
+}
+
+.results-list dt {
+  color: #42536c;
+  font-weight: 700;
+}
+
+.results-list dd {
+  margin: 0;
+  color: #1d3153;
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .practice-card {
@@ -266,6 +412,14 @@ button:disabled {
     padding: 20px 15px 17px;
   }
 
+  .results-card {
+    padding: 20px 15px;
+  }
+
+  .timer-panel {
+    padding: 17px 14px;
+  }
+
   .keypad {
     gap: 8px;
   }
@@ -289,6 +443,10 @@ button:disabled {
     margin-top: 13px;
     padding-top: 15px;
     padding-bottom: 14px;
+  }
+
+  .timer-clock {
+    font-size: clamp(3rem, 10vh, 4rem);
   }
 
   .equation {
