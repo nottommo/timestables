@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f2f7ff">
+    <title>Times Tables Practice</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="page-header">
+        <p class="eyebrow">A little practice goes a long way</p>
+        <h1>Times Tables</h1>
+        <p class="subtitle">Choose a table and solve the question.</p>
+      </header>
+
+      <section class="table-picker" aria-labelledby="table-picker-title">
+        <h2 id="table-picker-title">Practice tables</h2>
+        <div class="table-options" id="table-options" role="group" aria-labelledby="table-picker-title"></div>
+        <p class="selection-hint">Pick one or more tables to practise.</p>
+      </section>
+
+      <section class="practice-card" aria-label="Multiplication practice">
+        <p class="question-label">Your question</p>
+        <p class="equation" id="equation" aria-live="polite" aria-atomic="true"></p>
+        <p class="feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+
+        <div class="answer-display" id="answer-display" role="status" aria-label="Your answer" aria-live="polite">
+          <span class="answer-placeholder">Your answer</span>
+        </div>
+
+        <div class="keypad" id="keypad" role="group" aria-label="Answer keypad">
+          <button class="key" type="button" data-digit="1">1</button>
+          <button class="key" type="button" data-digit="2">2</button>
+          <button class="key" type="button" data-digit="3">3</button>
+          <button class="key" type="button" data-digit="4">4</button>
+          <button class="key" type="button" data-digit="5">5</button>
+          <button class="key" type="button" data-digit="6">6</button>
+          <button class="key" type="button" data-digit="7">7</button>
+          <button class="key" type="button" data-digit="8">8</button>
+          <button class="key" type="button" data-digit="9">9</button>
+          <button class="key key-action" type="button" data-action="backspace" aria-label="Delete last digit">⌫</button>
+          <button class="key" type="button" data-digit="0">0</button>
+          <button class="key key-submit" id="submit-answer" type="button" disabled>Check</button>
+        </div>
+        <p class="keypad-hint">Use the number pad to enter your answer.</p>
+      </section>
+    </main>
+  </body>
+</html>
